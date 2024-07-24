@@ -3,7 +3,9 @@ package com.udacity.jdnd.course3.critter.data;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,12 +13,12 @@ import java.util.Set;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private Set<Pet> pet = new HashSet<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Pet> pets = new ArrayList<>();
 }
